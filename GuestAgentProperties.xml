@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-16"?>
+
+<Doc>
+  <CustomProperties>
+  <Property Name="VirtualMachine.Admin.UseGuestAgent" DefaultValue="true" Encrypted="false" PromptUser="false"/>
+	<Property Name="VirtualMachine.Admin.CustomizeGuestOSDely" Encrypted="false" PromptUser="false"/>
+	<Property Name="VirtualMachine.Customize.WaitComplete" DefaultValue="true" Encrypted="false" PromptUser="false"/>
+	<Property Name="VirtualMachine.Software0.Name" Encrypted="false" PromptUser="false"/>
+	<Property Name="VirtualMachine.Software0.ScriptPath" Encrypted="false" PromptUser="false"/>
+  </CustomProperties>
+</Doc>
