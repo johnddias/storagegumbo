@@ -13,7 +13,11 @@
 		"7bc3940f-da7e-7edf-b9ee-1b2ba1a180a7",
 		"76a3a610-db83-51f9-8b62-c6a9b8f6f45b",
 		"3ba5ff55-04ee-7883-9ba5-200d7e68c981",
-		"a5da2545-0f47-04c3-61fe-90739e5f2e8f"
+		"a5da2545-0f47-04c3-61fe-90739e5f2e8f",
+		"8630cd84-8ba2-8426-52be-a5ff24550831",
+		"ff8ab8d0-8fad-3d2e-054b-d90f5fe6548b",
+		"c7d68592-87b6-38f3-0fc0-542bf0cf2a19",
+		"180b76c1-d38b-0865-7399-840d6b635ade"
 	],
 	"folders": [],
 	"timestamp": 1430493387967,
@@ -175,6 +179,33 @@
 			"responses": []
 		},
 		{
+			"id": "180b76c1-d38b-0865-7399-840d6b635ade",
+			"headers": "Accept: application/json\nContent-Type: application/json\nAuthorization: Basic YWRtaW46Vk13YXJlMSE=\n",
+			"url": "https://{{vrops}}/suite-api/api/resources/9e40942d-588a-445a-b021-0aa8ce90ba23/relationships/children",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Add Child Resource to a Resource",
+			"description": "This operation adds a child resource to a resource.  \n\nAPI documentation states that POST is additive while PUT is destructive (i.e. overwites existing relationships).\n\nJSON body includes an array of child objects to add.  \n\nThe call does not provide a lot of detail for failure, but it seems\nthat if you have an invalid UUID for a child or the child is already related\nthen it will fail with 400.\n\n204 is a successful call.",
+			"descriptionFormat": "html",
+			"time": 1451501068918,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": {
+				"username": "{{user}}",
+				"password": "{{pass}}",
+				"saveToRequest": true,
+				"id": "basic",
+				"timestamp": 1424807363369
+			},
+			"rawModeData": "{\n    \"uuids\" : [\"101e8549-dd2d-4865-9885-597c4b9eadea\"]\n}"
+		},
+		{
 			"id": "3a514987-920d-63d0-eb8e-2679decc8e3d",
 			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
 			"url": "https://{{vrops}}/suite-api/api/adapters?adapterKindKey=VMWARE",
@@ -252,22 +283,21 @@
 			"id": "65e84aeb-8f03-59e6-ac2c-1ba3a168d24a",
 			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
 			"url": "https://{{vrops}}/suite-api/api/reports",
-			"pathVariables": {},
 			"preRequestScript": "",
+			"pathVariables": {},
 			"method": "POST",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
 			"data": [],
 			"dataMode": "raw",
-			"name": "Generate a report",
-			"description": "You will need to update several items in the body such as:\n  - ID of resource you wish to run this report on\n  - ID of the report you wish to run\n  - Traversal Spec for the report (you can get this from the API query\n\"Get Report Definitions\", the travesal spec must match the resource type.\n",
-			"descriptionFormat": "html",
-			"time": 1443615787575,
 			"version": 2,
-			"responses": [],
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\r\n  \"resourceId\" : \"24f55311-3d86-41fd-9c73-1c4c0e0dcbb6\",\r\n  \"reportDefinitionId\" : \"1f69952f-7ff4-4d2c-9446-81a811de19b0\",\r\n  \"traversalSpec\" :       {\r\n        \"name\": \"vSphere Hosts and Clusters\",\r\n        \"description\": \"Enables view of resources imported from vCenter like Clusters, Hosts, VMs and ResourcePools\",\r\n        \"rootAdapterKindKey\": \"VMWARE\",\r\n        \"rootResourceKindKey\": \"vSphere World\",\r\n        \"adapterInstanceAssociation\": false\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  },\r\n  \"id\" : null\r\n}"
+			"time": 1445541277186,
+			"name": "Generate a report",
+			"description": "You will need to update several items in the body such as:\n  - ID of resource you wish to run this report on\n  - ID of the report you wish to run\n  - Traversal Spec for the report (you can get this from the API query\n\"Get Report Definitions\", the travesal spec must match the resource type.\n",
+			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
+			"responses": [],
+			"rawModeData": "{\r\n  \"resourceId\" : \"24f55311-3d86-41fd-9c73-1c4c0e0dcbb6\",\r\n  \"reportDefinitionId\" : \"97d19754-0ad3-4de1-b35b-d8ad5d07be24\",\r\n  \"traversalSpec\" :       {\r\n        \"name\": \"vSphere Hosts and Clusters\",\r\n        \"description\": \"Enables view of resources imported from vCenter like Clusters, Hosts, VMs and ResourcePools\",\r\n        \"rootAdapterKindKey\": \"VMWARE\",\r\n        \"rootResourceKindKey\": \"vSphere World\",\r\n        \"adapterInstanceAssociation\": false\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  },\r\n  \"id\" : null\r\n}"
 		},
 		{
 			"id": "6e982e23-8377-13d3-5ad5-4afaac69dfbe",
@@ -334,6 +364,32 @@
 			"helperAttributes": {}
 		},
 		{
+			"id": "8630cd84-8ba2-8426-52be-a5ff24550831",
+			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\n",
+			"url": "https://{{vrops}}/suite-api/api/resources/1376f2ed-7d40-4add-8568-4942e56f68f0/properties",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Properties of a Resource",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1444334092174,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": {
+				"username": "{{user}}",
+				"password": "{{pass}}",
+				"saveToRequest": true,
+				"id": "basic",
+				"timestamp": 1424807363369
+			}
+		},
+		{
 			"id": "a5da2545-0f47-04c3-61fe-90739e5f2e8f",
 			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
 			"url": "https://{{vrops}}/suite-api/api/adapters/617d20fd-536a-4bea-9f5e-4c01dd845ddc/monitoringstate/start",
@@ -359,6 +415,59 @@
 				"timestamp": 1424807363369
 			},
 			"rawModeData": ""
+		},
+		{
+			"id": "c7d68592-87b6-38f3-0fc0-542bf0cf2a19",
+			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nContent-Type: application/json\n",
+			"url": "https://{{vrops}}/suite-api/api/symptoms/query",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Query Symptoms",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1444610150997,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": {
+				"username": "{{user}}",
+				"password": "{{pass}}",
+				"saveToRequest": true,
+				"id": "basic",
+				"timestamp": 1424807363369
+			},
+			"rawModeData": "{\r\n  \"compositeOperator\" : \"AND\",\r\n  \"symptomId\" : [ ],\r\n  \"resource-query\" : {\r\n    \"name\" : null,\r\n    \"regex\" : null,\r\n    \"adapterKind\" : null,\r\n    \"resourceKind\" : null,\r\n    \"collectorName\" : null,\r\n    \"collectorId\" : null,\r\n    \"maintenanceScheduleId\" : null,\r\n    \"adapterInstanceId\" : null,\r\n    \"recentlyAdded\" : null,\r\n    \"resourceState\" : null,\r\n    \"resourceStatus\" : null,\r\n    \"resourceHealth\" : null,\r\n    \"parentId\" : null,\r\n    \"credentialId\" : null,\r\n    \"resourceId\" : [ \"5748438c-41d5-4397-a59b-efe973674653\" ],\r\n    \"propertyName\" : null,\r\n    \"propertyValue\" : null,\r\n    \"statKey\" : null,\r\n    \"statKeyLowerBound\" : null,\r\n    \"statKeyUpperBound\" : null,\r\n    \"statKeyInclusive\" : true,\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"includeChildrenResources\" : false,\r\n  \"activeOnly\" : true,\r\n  \"alarmType\" : [ ],\r\n  \"alarmCriticality\" : [ \"CRITICAL\", \"IMMEDIATE\", \"WARNING\", \"INFORMATION\" ],\r\n  \"symptomDefinitionId\" : [ ],\r\n  \"statKey\" : [ ],\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+		},
+		{
+			"id": "ff8ab8d0-8fad-3d2e-054b-d90f5fe6548b",
+			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\n",
+			"url": "https://{{vrops}}/suite-api/api/resources/1376f2ed-7d40-4add-8568-4942e56f68f0/statkeys",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get StatKeys of a Resource",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1444334151847,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": {
+				"username": "{{user}}",
+				"password": "{{pass}}",
+				"saveToRequest": true,
+				"id": "basic",
+				"timestamp": 1424807363369
+			}
 		}
 	]
 }
