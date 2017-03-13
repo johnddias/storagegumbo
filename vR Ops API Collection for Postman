@@ -1,501 +1,958 @@
 {
-	"id": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-	"name": "vRealize Operations 6",
-	"description": "",
-	"order": [
-		"05ab5058-975f-1aec-430d-64feeb965a3c",
-		"4712b34a-5959-eb91-f6e2-21ead27848e4",
-		"6e982e23-8377-13d3-5ad5-4afaac69dfbe",
-		"09818290-7c7d-cfa1-5f6d-07f583877032",
-		"3a514987-920d-63d0-eb8e-2679decc8e3d",
-		"1407c676-9036-f1cd-1bc2-3be28ebfa08b",
-		"65e84aeb-8f03-59e6-ac2c-1ba3a168d24a",
-		"7bc3940f-da7e-7edf-b9ee-1b2ba1a180a7",
-		"76a3a610-db83-51f9-8b62-c6a9b8f6f45b",
-		"3ba5ff55-04ee-7883-9ba5-200d7e68c981",
-		"a5da2545-0f47-04c3-61fe-90739e5f2e8f",
-		"8630cd84-8ba2-8426-52be-a5ff24550831",
-		"ff8ab8d0-8fad-3d2e-054b-d90f5fe6548b",
-		"c7d68592-87b6-38f3-0fc0-542bf0cf2a19",
-		"180b76c1-d38b-0865-7399-840d6b635ade",
-		"6cde869b-568d-e39e-19b3-3b8911f06581",
-		"b39eee9e-9bb3-fcef-1387-aacafe94f362",
-		"9f02ae14-5321-40f4-990a-d42f5cfc7834"
-	],
-	"folders": [
+	"variables": [],
+	"info": {
+		"name": "vRealize Operations 6",
+		"_postman_id": "8725de8d-4ad6-2dc9-887a-54fe8e1f879b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "7ec00e0f-6a88-c31c-09bb-746c7115550d",
 			"name": "Internal API Calls",
 			"description": "",
-			"order": [
-				"6cb8d8d3-bdca-2fa0-a229-27ea8f28b2fd"
+			"item": [
+				{
+					"name": "Get Custom Groups",
+					"request": {
+						"url": "https://{{vrops}}/suite-api/internal/resources/groups",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "vRealizeOpsToken {{bearerToken}}",
+								"description": ""
+							},
+							{
+								"key": "X-vRealizeOps-API-use-unsupported",
+								"value": "true",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Static Custom Group",
+					"request": {
+						"url": "https://{{vrops}}/suite-api/internal/resources/groups",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "vRealizeOpsToken {{bearerToken}}",
+								"description": ""
+							},
+							{
+								"key": "X-vRealizeOps-API-use-unsupported",
+								"value": "true",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Custom Group",
+					"request": {
+						"url": "https://{{vrops}}/suite-api/internal/resources/groups",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "vRealizeOpsToken {{bearerToken}}",
+								"description": ""
+							},
+							{
+								"key": "X-vRealizeOps-API-use-unsupported",
+								"value": "true",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n      \"resourceKey\": {\n        \"name\": \"test group 100\",\n        \"adapterKindKey\": \"Container\",\n        \"resourceKindKey\": \"Function\",\n        \"resourceIdentifiers\": []\n      },\n      \"membershipDefinition\": {\n        \"includedResources\": [],\n        \"excludedResources\": [],\n        \"rules\" : [ {\n      \"resourceKindKey\" : {\n        \"resourceKind\" : \"VirtualMachine\",\n        \"adapterKind\" : \"VMWARE\"\n      },\n      \"attributeRules\" : [],\n      \"resourceNameRules\" : [ {\n        \"name\" : \"lnx\",\n        \"compareOperator\" : \"CONTAINS\"\n        } ],\n      \"relationshipRules\" : [],\n      \"others\" : [],\n      \"otherAttributes\" : {\n      }\n        }]\n      } \n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RUN FIRST - Get vR Ops Auth Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"bearerToken\", jsonData.token);",
+							""
+						]
+					}
+				}
 			],
-			"owner": "43103"
-		}
-	],
-	"timestamp": 1430493387967,
-	"owner": "43103",
-	"remoteLink": "",
-	"public": false,
-	"requests": [
-		{
-			"id": "05ab5058-975f-1aec-430d-64feeb965a3c",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/resources",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"id": "basic",
-				"timestamp": 1437749734711
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/auth/token/acquire",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\" : \"{{user}}\",\r\n  \"authSource\" : \"local\",\r\n  \"password\" : \"{{pass}}\",\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+				},
+				"description": ""
 			},
-			"time": 1437765728587,
+			"response": []
+		},
+		{
 			"name": "Get Resources",
-			"description": "",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
-		},
-		{
-			"id": "09818290-7c7d-cfa1-5f6d-07f583877032",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapters",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"id": "basic",
-				"timestamp": 1424807363369
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
 			},
-			"time": 1437764472221,
-			"name": "Get Adapter Instances ",
-			"description": "",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
+			"response": []
 		},
 		{
-			"id": "1407c676-9036-f1cd-1bc2-3be28ebfa08b",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/reportdefinitions",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1443615865470,
-			"name": "Get Report Definitions",
-			"description": "Gets all - to get a single report ID, just add /<report def id>\n",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
-		},
-		{
-			"id": "180b76c1-d38b-0865-7399-840d6b635ade",
-			"headers": "Accept: application/json\nContent-Type: application/json\nAuthorization: Basic YWRtaW46Vk13YXJlMSE=\n",
-			"url": "https://{{vrops}}/suite-api/api/resources/9e40942d-588a-445a-b021-0aa8ce90ba23/relationships/children",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "POST",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Add Child Resource to a Resource",
-			"description": "This operation adds a child resource to a resource.  \n\nAPI documentation states that POST is additive while PUT is destructive (i.e. overwites existing relationships).\n\nJSON body includes an array of child objects to add.  \n\nThe call does not provide a lot of detail for failure, but it seems\nthat if you have an invalid UUID for a child or the child is already related\nthen it will fail with 400.\n\n204 is a successful call.",
-			"descriptionFormat": "html",
-			"time": 1451501068918,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"rawModeData": "{\n    \"uuids\" : [\"101e8549-dd2d-4865-9885-597c4b9eadea\"]\n}"
-		},
-		{
-			"id": "3a514987-920d-63d0-eb8e-2679decc8e3d",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapters?adapterKindKey=VMWARE",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"time": 1437764556945,
-			"name": "Get An Adapter Instance(s) of Type (Kind) copy",
-			"description": "",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
-		},
-		{
-			"id": "3ba5ff55-04ee-7883-9ba5-200d7e68c981",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapters",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"time": 1444069062339,
-			"name": "Create a Python Adapter Instance",
-			"description": "Be sure to check values in the JSON body for credentials.\nAlso note you will need to start the adapter using \"Star an adapter instance\" \nafter creation using the UUID from the response.\n\nIf you aren't using a CA, the certificate will have to be added via the UI\nI do not know of a way to do this via the REST API",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": [],
-			"rawModeData": "{\r\n  \"name\" : \"Python Adapter Instance\",\r\n  \"description\" : \"A Python Adapter Instance\",\r\n  \"collectorId\" : \"1\",\r\n  \"adapterKindKey\" : \"PythonRemediationVcenterAdapter\",\r\n  \"resourceIdentifiers\" : [ {\r\n    \"name\" : \"AUTODISCOVERY\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"PROCESSCHANGEEVENTS\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"VCURL\",\r\n    \"value\" : \"https://vc-vapp.mylab.dias\"\r\n  } ],\r\n  \"credential\" : {\r\n    \"id\" : null,\r\n    \"name\" : \"Python Credential\",\r\n    \"adapterKindKey\" : \"PythonRemediationVcenterAdapter\",\r\n    \"credentialKindKey\" : \"PRINCIPALCREDENTIAL\",\r\n    \"fields\" : [ {\r\n      \"name\" : \"UserName\",\r\n      \"value\" : \"administrator@mylab.dias\"\r\n    }, {\r\n      \"name\" : \"Password\",\r\n      \"value\" : \"VMware1!\"\r\n    } ],\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
-		},
-		{
-			"id": "4712b34a-5959-eb91-f6e2-21ead27848e4",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/resources?name=iaas",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"time": 1437763579441,
 			"name": "Get VirtualMachine Res by Name",
-			"description": "",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
-		},
-		{
-			"id": "65e84aeb-8f03-59e6-ac2c-1ba3a168d24a",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/reports",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1445541277186,
-			"name": "Generate a report",
-			"description": "You will need to update several items in the body such as:\n  - ID of resource you wish to run this report on\n  - ID of the report you wish to run\n  - Traversal Spec for the report (you can get this from the API query\n\"Get Report Definitions\", the travesal spec must match the resource type.\n",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": [],
-			"rawModeData": "{\r\n  \"resourceId\" : \"24f55311-3d86-41fd-9c73-1c4c0e0dcbb6\",\r\n  \"reportDefinitionId\" : \"97d19754-0ad3-4de1-b35b-d8ad5d07be24\",\r\n  \"traversalSpec\" :       {\r\n        \"name\": \"vSphere Hosts and Clusters\",\r\n        \"description\": \"Enables view of resources imported from vCenter like Clusters, Hosts, VMs and ResourcePools\",\r\n        \"rootAdapterKindKey\": \"VMWARE\",\r\n        \"rootResourceKindKey\": \"vSphere World\",\r\n        \"adapterInstanceAssociation\": false\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  },\r\n  \"id\" : null\r\n}"
-		},
-		{
-			"id": "6cb8d8d3-bdca-2fa0-a229-27ea8f28b2fd",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nX-vRealizeOps-API-use-unsupported: true\n",
-			"url": "https://{{vrops}}/suite-api/internal/resources/groups",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "GET",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "params",
-			"name": "Get Custom Groups",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1454435319016,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1437749734711
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources?name=bmutil&resourceKind=virtualmachine",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
 			},
-			"folder": "7ec00e0f-6a88-c31c-09bb-746c7115550d"
+			"response": []
 		},
 		{
-			"id": "6cde869b-568d-e39e-19b3-3b8911f06581",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/resources/adapters/429e5b30-afcf-468d-a6c4-58d87ec05757",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "POST",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Create an EPOPS Windows Service Monitor Resource",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1451539615444,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"rawModeData": "{\r\n    \"description\": \"Windows Time Service Monitor\",\r\n    \"creationTime\": null,\r\n    \"resourceKey\": {\r\n        \"name\": \"Windows Time Service\",\r\n        \"adapterKindKey\": \"EP Ops Adapter\",\r\n        \"resourceKindKey\": \"Windows Service\",\r\n        \"resourceIdentifiers\": [\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"agentID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"1451538219583-2983685990625162095-598612646798980120\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"discoveryMode\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"MANUAL\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"monitoredResourceID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": true\r\n                },\r\n                \"value\": \"Windows Time Service\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"Override_agent_configuration_data\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"0\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"parentID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": true\r\n                },\r\n                \"value\": \"|1451538219583-2983685990625162095-598612646798980120\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"service_name\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"W32Time\"\r\n            }\r\n        ]\r\n    },\r\n    \"identifier\": null\r\n}"
-		},
-		{
-			"id": "6e982e23-8377-13d3-5ad5-4afaac69dfbe",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapterkinds",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"time": 1437763650201,
 			"name": "Get Adapter Types (Kinds)",
-			"description": "",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": []
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapterkinds",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "76a3a610-db83-51f9-8b62-c6a9b8f6f45b",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapters",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1444067496627,
-			"name": "Create a vCenter Adapter Instance",
-			"description": "Be sure to check values in the JSON body for credentials.\nAlso note you will need to start the adapter using \"Star an adapter instance\" \nafter creation using the UUID from the response.\n\nIf you aren't using a CA, the certificate will have to be added via the UI\nI do not know of a way to do this via the REST API",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"responses": [],
-			"rawModeData": "{\r\n  \"name\" : \"VC Adapter Instance\",\r\n  \"description\" : \"A vCenter Adapter Instance\",\r\n  \"collectorId\" : \"1\",\r\n  \"adapterKindKey\" : \"VMWARE\",\r\n  \"resourceIdentifiers\" : [ {\r\n    \"name\" : \"AUTODISCOVERY\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"PROCESSCHANGEEVENTS\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"VCURL\",\r\n    \"value\" : \"https://vc-vapp.mylab.dias/sdk\"\r\n  } ],\r\n  \"credential\" : {\r\n    \"id\" : null,\r\n    \"name\" : \"New Principal Credential\",\r\n    \"adapterKindKey\" : \"VMWARE\",\r\n    \"credentialKindKey\" : \"PRINCIPALCREDENTIAL\",\r\n    \"fields\" : [ {\r\n      \"name\" : \"USER\",\r\n      \"value\" : \"administrator@mylab.dias\"\r\n    }, {\r\n      \"name\" : \"PASSWORD\",\r\n      \"value\" : \"VMware1!\"\r\n    } ],\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+			"name": "Get Adapter Instances ",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapters",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "7bc3940f-da7e-7edf-b9ee-1b2ba1a180a7",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/reports",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "GET",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "params",
+			"name": "Get An Adapter Instance(s) of Type (Kind) copy",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapters?adapterKindKey=VMWARE",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Report Definitions",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/reportdefinitions",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Gets all - to get a single report ID, just add /<report def id>\n"
+			},
+			"response": []
+		},
+		{
 			"name": "Get Generated Reports",
-			"description": "You can check status of report runs this way.\nTo get a specific generated report add /<report id> \n",
-			"descriptionFormat": "html",
-			"time": 1443616025412,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/reports",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "You can check status of report runs this way.\nTo get a specific generated report add /<report id> \n"
+			},
+			"response": []
 		},
 		{
-			"id": "8630cd84-8ba2-8426-52be-a5ff24550831",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\n",
-			"url": "https://{{vrops}}/suite-api/api/resources/1376f2ed-7d40-4add-8568-4942e56f68f0/properties",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "GET",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "params",
-			"name": "Get Properties of a Resource",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1444334092174,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			}
+			"name": "Generate a report",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/reports",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"resourceId\" : \"24f55311-3d86-41fd-9c73-1c4c0e0dcbb6\",\r\n  \"reportDefinitionId\" : \"97d19754-0ad3-4de1-b35b-d8ad5d07be24\",\r\n  \"traversalSpec\" :       {\r\n        \"name\": \"vSphere Hosts and Clusters\",\r\n        \"description\": \"Enables view of resources imported from vCenter like Clusters, Hosts, VMs and ResourcePools\",\r\n        \"rootAdapterKindKey\": \"VMWARE\",\r\n        \"rootResourceKindKey\": \"vSphere World\",\r\n        \"adapterInstanceAssociation\": false\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  },\r\n  \"id\" : null\r\n}"
+				},
+				"description": "You will need to update several items in the body such as:\n  - ID of resource you wish to run this report on\n  - ID of the report you wish to run\n  - Traversal Spec for the report (you can get this from the API query\n\"Get Report Definitions\", the travesal spec must match the resource type.\n"
+			},
+			"response": []
 		},
 		{
-			"id": "9f02ae14-5321-40f4-990a-d42f5cfc7834",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/resources/cb7f37b6-c974-45eb-8f26-4ee3b3af600f/stats?begin=1460490170000&end=1463082627000&intervalQuantifier=1&intervalType=DAYS&rollUpType=AVG&statKey=mem|host_usage",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": null,
-			"dataMode": "params",
-			"name": "Get Stats from Resource (Not query)",
-			"description": "I have not tested but you may be able to use the \"resourceIds\" input paramter to specify multiple resources (of the same kind, obviously).  The example here shows a daily avg for 30 days.  Timestamps are milli from epoch.",
-			"descriptionFormat": "html",
-			"time": 1463082867252,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			"name": "Create a vCenter Adapter Instance",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapters",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\" : \"VC Adapter Instance\",\r\n  \"description\" : \"A vCenter Adapter Instance\",\r\n  \"collectorId\" : \"1\",\r\n  \"adapterKindKey\" : \"VMWARE\",\r\n  \"resourceIdentifiers\" : [ {\r\n    \"name\" : \"AUTODISCOVERY\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"PROCESSCHANGEEVENTS\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"VCURL\",\r\n    \"value\" : \"https://vc-vapp.mylab.dias/sdk\"\r\n  } ],\r\n  \"credential\" : {\r\n    \"id\" : null,\r\n    \"name\" : \"New Principal Credential\",\r\n    \"adapterKindKey\" : \"VMWARE\",\r\n    \"credentialKindKey\" : \"PRINCIPALCREDENTIAL\",\r\n    \"fields\" : [ {\r\n      \"name\" : \"USER\",\r\n      \"value\" : \"administrator@mylab.dias\"\r\n    }, {\r\n      \"name\" : \"PASSWORD\",\r\n      \"value\" : \"VMware1!\"\r\n    } ],\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+				},
+				"description": "Be sure to check values in the JSON body for credentials.\nAlso note you will need to start the adapter using \"Star an adapter instance\" \nafter creation using the UUID from the response.\n\nIf you aren't using a CA, the certificate will have to be added via the UI\nI do not know of a way to do this via the REST API"
+			},
+			"response": []
 		},
 		{
-			"id": "a5da2545-0f47-04c3-61fe-90739e5f2e8f",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nAccept: application/json\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/adapters/617d20fd-536a-4bea-9f5e-4c01dd845ddc/monitoringstate/start",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "PUT",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "raw",
+			"name": "Create a Python Adapter Instance",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapters",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\" : \"Python Adapter Instance\",\r\n  \"description\" : \"A Python Adapter Instance\",\r\n  \"collectorId\" : \"1\",\r\n  \"adapterKindKey\" : \"PythonRemediationVcenterAdapter\",\r\n  \"resourceIdentifiers\" : [ {\r\n    \"name\" : \"AUTODISCOVERY\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"PROCESSCHANGEEVENTS\",\r\n    \"value\" : \"true\"\r\n  }, {\r\n    \"name\" : \"VCURL\",\r\n    \"value\" : \"https://vc-vapp.mylab.dias\"\r\n  } ],\r\n  \"credential\" : {\r\n    \"id\" : null,\r\n    \"name\" : \"Python Credential\",\r\n    \"adapterKindKey\" : \"PythonRemediationVcenterAdapter\",\r\n    \"credentialKindKey\" : \"PRINCIPALCREDENTIAL\",\r\n    \"fields\" : [ {\r\n      \"name\" : \"UserName\",\r\n      \"value\" : \"administrator@mylab.dias\"\r\n    }, {\r\n      \"name\" : \"Password\",\r\n      \"value\" : \"VMware1!\"\r\n    } ],\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+				},
+				"description": "Be sure to check values in the JSON body for credentials.\nAlso note you will need to start the adapter using \"Star an adapter instance\" \nafter creation using the UUID from the response.\n\nIf you aren't using a CA, the certificate will have to be added via the UI\nI do not know of a way to do this via the REST API"
+			},
+			"response": []
+		},
+		{
 			"name": "Start an adapter instance",
-			"description": "Replace the UUID with the ID of the adapter instance you want to start\nThis can be retrieved using Get Adapter Instances",
-			"descriptionFormat": "html",
-			"time": 1444070753946,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapters/617d20fd-536a-4bea-9f5e-4c01dd845ddc/monitoringstate/start",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Replace the UUID with the ID of the adapter instance you want to start\nThis can be retrieved using Get Adapter Instances"
 			},
-			"rawModeData": ""
+			"response": []
 		},
 		{
-			"id": "b39eee9e-9bb3-fcef-1387-aacafe94f362",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nContent-Type: application/json\nAccept: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/auth/users",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "POST",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Create Local User",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1455126326032,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1455038868682
+			"name": "Get Properties of a Resource",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/{{resourceId}}/properties",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
 			},
-			"rawModeData": "{\r\n  \"username\" : \"frank\",\r\n  \"firstName\" : \"Frank\",\r\n  \"lastName\" : \"Barnes\",\r\n  \"password\" : \"VMware1!\"\r\n}"
+			"response": []
 		},
 		{
-			"id": "c7d68592-87b6-38f3-0fc0-542bf0cf2a19",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\nContent-Type: application/json\n",
-			"url": "https://{{vrops}}/suite-api/api/symptoms/query",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "POST",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Query Symptoms",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1444610150997,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			},
-			"rawModeData": "{\r\n  \"compositeOperator\" : \"AND\",\r\n  \"symptomId\" : [ ],\r\n  \"resource-query\" : {\r\n    \"name\" : null,\r\n    \"regex\" : null,\r\n    \"adapterKind\" : null,\r\n    \"resourceKind\" : null,\r\n    \"collectorName\" : null,\r\n    \"collectorId\" : null,\r\n    \"maintenanceScheduleId\" : null,\r\n    \"adapterInstanceId\" : null,\r\n    \"recentlyAdded\" : null,\r\n    \"resourceState\" : null,\r\n    \"resourceStatus\" : null,\r\n    \"resourceHealth\" : null,\r\n    \"parentId\" : null,\r\n    \"credentialId\" : null,\r\n    \"resourceId\" : [ \"5748438c-41d5-4397-a59b-efe973674653\" ],\r\n    \"propertyName\" : null,\r\n    \"propertyValue\" : null,\r\n    \"statKey\" : null,\r\n    \"statKeyLowerBound\" : null,\r\n    \"statKeyUpperBound\" : null,\r\n    \"statKeyInclusive\" : true,\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"includeChildrenResources\" : false,\r\n  \"activeOnly\" : true,\r\n  \"alarmType\" : [ ],\r\n  \"alarmCriticality\" : [ \"CRITICAL\", \"IMMEDIATE\", \"WARNING\", \"INFORMATION\" ],\r\n  \"symptomDefinitionId\" : [ ],\r\n  \"statKey\" : [ ],\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
-		},
-		{
-			"id": "ff8ab8d0-8fad-3d2e-054b-d90f5fe6548b",
-			"headers": "Authorization: Basic YWRtaW46Vk13YXJlMSE=\n",
-			"url": "https://{{vrops}}/suite-api/api/resources/1376f2ed-7d40-4add-8568-4942e56f68f0/statkeys",
-			"pathVariables": {},
-			"preRequestScript": "",
-			"method": "GET",
-			"collectionId": "87b8c9f1-d0e4-5186-e50c-c9959b094b53",
-			"data": [],
-			"dataMode": "params",
 			"name": "Get StatKeys of a Resource",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1444334151847,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "basicAuth",
-			"helperAttributes": {
-				"username": "{{user}}",
-				"password": "{{pass}}",
-				"saveToRequest": true,
-				"id": "basic",
-				"timestamp": 1424807363369
-			}
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/{{resourceId}}/statkeys",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Query Alerts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var r = jsonData.alerts.reduce(function(c, a) {",
+							"    if ( c[a.alertDefinitionName] ) {",
+							"            c[a.alertDefinitionName] += 1;",
+							"    } else {",
+							"            c[a.alertDefinitionName] = 1;",
+							"    }",
+							"    return c;",
+							"}, {});",
+							"",
+							"tests[JSON.stringify(r)] = true;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/alerts/query",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resource-query\": {\n       \"resourceKind\": [\"virtualmachine\"]\n        },\n    \"activeOnly\": \"True\",\n    \"alertCriticality\": [\"CRITICAL\",\"IMMEDIATE\",\"WARNING\",\"INFORMATION\"],\n    \"alertImpact\": [\"risk\"]\n  \n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Query Symptoms",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/symptoms/query",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"compositeOperator\" : \"AND\",\r\n  \"symptomId\" : [ ],\r\n  \"resource-query\" : {\r\n    \"name\" : null,\r\n    \"regex\" : null,\r\n    \"adapterKind\" : null,\r\n    \"resourceKind\" : null,\r\n    \"collectorName\" : null,\r\n    \"collectorId\" : null,\r\n    \"maintenanceScheduleId\" : null,\r\n    \"adapterInstanceId\" : null,\r\n    \"recentlyAdded\" : null,\r\n    \"resourceState\" : null,\r\n    \"resourceStatus\" : null,\r\n    \"resourceHealth\" : null,\r\n    \"parentId\" : null,\r\n    \"credentialId\" : null,\r\n    \"resourceId\" : [ \"5748438c-41d5-4397-a59b-efe973674653\" ],\r\n    \"propertyName\" : null,\r\n    \"propertyValue\" : null,\r\n    \"statKey\" : null,\r\n    \"statKeyLowerBound\" : null,\r\n    \"statKeyUpperBound\" : null,\r\n    \"statKeyInclusive\" : true,\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  },\r\n  \"includeChildrenResources\" : false,\r\n  \"activeOnly\" : true,\r\n  \"alarmType\" : [ ],\r\n  \"alarmCriticality\" : [ \"CRITICAL\", \"IMMEDIATE\", \"WARNING\", \"INFORMATION\" ],\r\n  \"symptomDefinitionId\" : [ ],\r\n  \"statKey\" : [ ],\r\n  \"others\" : [ ],\r\n  \"otherAttributes\" : {\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Child Resource to a Resource",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/9e40942d-588a-445a-b021-0aa8ce90ba23/relationships/children",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuids\" : [\"101e8549-dd2d-4865-9885-597c4b9eadea\"]\n}"
+				},
+				"description": "This operation adds a child resource to a resource.  \n\nAPI documentation states that POST is additive while PUT is destructive (i.e. overwites existing relationships).\n\nJSON body includes an array of child objects to add.  \n\nThe call does not provide a lot of detail for failure, but it seems\nthat if you have an invalid UUID for a child or the child is already related\nthen it will fail with 400.\n\n204 is a successful call."
+			},
+			"response": []
+		},
+		{
+			"name": "Create an EPOPS Windows Service Monitor Resource",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/adapters/429e5b30-afcf-468d-a6c4-58d87ec05757",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Windows Time Service Monitor\",\r\n    \"creationTime\": null,\r\n    \"resourceKey\": {\r\n        \"name\": \"Windows Time Service\",\r\n        \"adapterKindKey\": \"EP Ops Adapter\",\r\n        \"resourceKindKey\": \"Windows Service\",\r\n        \"resourceIdentifiers\": [\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"agentID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"1451538219583-2983685990625162095-598612646798980120\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"discoveryMode\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"MANUAL\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"monitoredResourceID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": true\r\n                },\r\n                \"value\": \"Windows Time Service\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"Override_agent_configuration_data\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"0\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"parentID\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": true\r\n                },\r\n                \"value\": \"|1451538219583-2983685990625162095-598612646798980120\"\r\n            },\r\n            {\r\n                \"identifierType\": {\r\n                    \"name\": \"service_name\",\r\n                    \"dataType\": \"STRING\",\r\n                    \"isPartOfUniqueness\": false\r\n                },\r\n                \"value\": \"W32Time\"\r\n            }\r\n        ]\r\n    },\r\n    \"identifier\": null\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Local User",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/auth/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\" : \"frank\",\r\n  \"firstName\" : \"Frank\",\r\n  \"lastName\" : \"Barnes\",\r\n  \"password\" : \"VMware1!\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stats from Resource (Not query)",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/cb7f37b6-c974-45eb-8f26-4ee3b3af600f/stats?begin=1460490170000&end=1463082627000&intervalQuantifier=1&intervalType=DAYS&rollUpType=AVG&statKey=mem|host_usage",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "I have not tested but you may be able to use the \"resourceIds\" input paramter to specify multiple resources (of the same kind, obviously).  The example here shows a daily avg for 30 days.  Timestamps are milli from epoch."
+			},
+			"response": []
+		},
+		{
+			"name": "Update EP Ops Agent",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/internal/agent/upgrade",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "X-vRealizeOps-API-use-unsupported",
+						"value": "true",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"agentId\" : \"1451538219583-2983685990625162095-598612646798980120\",\r\n  \"fileLocation\" : \"bundles/6.2.1\",\r\n  \"agentBundleFile\" : \"agent-x86-64-win-6.2.1.zip\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Agent Status on Upgrade",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/adapterkinds/EP Ops Adapter/resourcekinds/EP Ops Agent/resources?identifiers[agentID]=1432528639235-6190445699790943031-2415937788285910890",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Need agent ID (token)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get EP Ops Agent ID by FQDN",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources?adapterKind=EP Ops Adapter&propertyName=fqdn&propertyValue=DC1.mylab.dias",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get All EP Ops Agents",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources?resourceKind=EP Ops Agent&",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add or Update Properties of a Resource",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/{{resourceId}}/properties",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"property-content\" : [ {\r\n    \"statKey\" : \"apiInjected|random\",\r\n    \"timestamps\" : [ 1477432000 ],\r\n    \"values\" : [ 0 ],\r\n    \"others\" : [ ],\r\n    \"otherAttributes\" : {\r\n    }\r\n  } ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Resources by Query and Save to var",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var resourceIds = \"\";",
+							"",
+							"for (var i in jsonData[\"resourceList\"]) {",
+							"    if (jsonData[\"resourceList\"][i].identifier) {",
+							"        resourceIds = resourceIds + (', \"' + jsonData[\"resourceList\"][i].identifier + '\"');",
+							"    }",
+							"    ",
+							"}",
+							"resourceIds = resourceIds.slice(1);",
+							"postman.setEnvironmentVariable(\"resourceIds\", resourceIds);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources?resourceKind=virtualmachine",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Test script will extract resource IDs from the response and load into the env as \"resourceIds\"\nYou can then use this within the body of a request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get StatKeys for Resource and Load var",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var cpuStatKeys = \"\";",
+							"var cpuStatKeysJSON = \"\";",
+							"",
+							"for (var i in jsonData[\"stat-key\"]) {",
+							"    if (jsonData[\"stat-key\"][i].key.startsWith(\"cpu|\")) {",
+							"        cpuStatKeys = cpuStatKeys + (\"&statKey=\" + jsonData[\"stat-key\"][i].key);",
+							"        cpuStatKeysJSON = cpuStatKeysJSON + (', \"' + jsonData[\"stat-key\"][i].key + '\"');",
+							"    }",
+							"    ",
+							"}",
+							"cpuStatKeysJSON = cpuStatKeysJSON.slice(1);",
+							"postman.setEnvironmentVariable(\"cpuStatsRequest\", cpuStatKeys);",
+							"postman.setEnvironmentVariable(\"cpuStatsJSON\", cpuStatKeysJSON);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/{{resourceId}}/statkeys",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Grabs CPU statKeys for a VM resource using the {{resourceId}} env var.\nPopulates two env vars:\ncpuStatKeys for GET stats for small requests (1 to ~10 VMs)\ncpuStatKeysJSON for POST stats for large requests (use in conjunction with {{resourceIds}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create an EPOPS IPMC Monitor Resource",
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/adapters/c156f8c6-bc10-435c-9e06-36c6aed6e243",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"description\": \"\",\n      \"creationTime\": null,\n      \"resourceKey\": {\n        \"name\": \"vc-west\",\n        \"adapterKindKey\": \"EP Ops Adapter\",\n        \"resourceKindKey\": \"ICMP Check\",\n        \"resourceIdentifiers\": [\n          {\n            \"identifierType\": {\n              \"name\": \"agentID\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": false\n            },\n            \"value\": \"1477430915544-2767489476111869748-4454033594147495906\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"discoveryMode\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": false\n            },\n            \"value\": \"MANUAL\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"hostname\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": false\n            },\n            \"value\": \"msbu-vc-west.mgmt.local\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"monitoredResourceID\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": true\n            },\n            \"value\": \"vc-west\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"Override_agent_configuration_data\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": false\n            },\n            \"value\": \"0\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"parentID\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": true\n            },\n            \"value\": \"|1477430915544-2767489476111869748-4454033594147495906\"\n          },\n          {\n            \"identifierType\": {\n              \"name\": \"sotimeout\",\n              \"dataType\": \"STRING\",\n              \"isPartOfUniqueness\": false\n            },\n            \"value\": \"10\"\n          }\n        ]\n      }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Start Monitoring a Resource",
+			"request": {
+				"url": "/api/resources/{id}/monitoringstate/start",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "applicaiton/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get TopN Stats",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var epoch = (new Date).getTime();",
+							"postman.setEnvironmentVariable(\"epoch\", epoch);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{vrops}}/suite-api/api/resources/stats/topn?begin={{epoch}}&intervalType=Hours&intervalQuantifier=24&rollUpType=AVG&statKey=",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "vRealizeOpsToken {{bearerToken}}",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
